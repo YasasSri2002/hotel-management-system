@@ -1,6 +1,5 @@
 package com.yasas.sunHotel.controller;
 
-import com.yasas.sunHotel.entity.RoomEntity;
 import com.yasas.sunHotel.model.Room;
 import com.yasas.sunHotel.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +39,11 @@ public class HotelController {
         return Collections.singletonMap("DELETE",roomService.deleteById(roomId));
 
     }
+
+    @PutMapping("/by-roomId/{roomId}")
+    public Room update(@PathVariable Integer roomId,@RequestBody Room room ){
+        return roomService.update(roomId,room);
+    }
+
 
 }

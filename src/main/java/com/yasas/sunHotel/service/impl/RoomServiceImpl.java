@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
@@ -53,14 +54,16 @@ public class RoomServiceImpl implements RoomService {
 
     }
 
-
     @Override
     public Room update(Integer roomId, Room room) {
+
         return mapper.convertValue(
                 roomRepository.save(mapper.convertValue
                         (room, RoomEntity.class)),
                 Room.class);
     }
+
+
 
     @Override
     public List<Room> getAllByType(String type) {

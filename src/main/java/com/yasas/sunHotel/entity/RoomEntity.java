@@ -1,8 +1,6 @@
 package com.yasas.sunHotel.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
@@ -20,6 +18,8 @@ public class RoomEntity {
     private String description;
 
     private Double price;
+
+    private String time;
 
 
 
