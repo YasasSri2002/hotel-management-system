@@ -1,4 +1,4 @@
-package com.yasas.sunHotel.entity;
+package com.yasas.hotel.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,12 +1,16 @@
-package com.yasas.sunHotel.model;
+package com.yasas.hotel.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
+@Table(name = "Rooms")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Room {
+@Entity
+public class RoomEntity {
 
+    @Id
     private  Integer roomId;
 
     private String type;
@@ -14,4 +18,10 @@ public class Room {
     private String description;
 
     private Double price;
+
+    private String time;
+
+
+
+
 }

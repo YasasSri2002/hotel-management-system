@@ -1,6 +1,6 @@
-package com.yasas.sunHotel.repository;
+package com.yasas.hotel.repository;
 
-import com.yasas.sunHotel.entity.RoomEntity;
+import com.yasas.hotel.entity.RoomEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
