@@ -6,9 +6,10 @@ import com.yasas.hotel.model.ProfileModel;
 import com.yasas.hotel.repository.ProfileRepository;
 import com.yasas.hotel.service.ProfileService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
@@ -18,12 +19,18 @@ public class ProfileServiceImpl implements ProfileService {
 
     private final ObjectMapper mapper;
 
+
     @Override
-    public ResponseEntity<ProfileModel> create(ProfileModel profile) {
-        ProfileEntity profileEntity = new ProfileEntity();
-        profileEntity.setProfilePicUrl(profile.getProfilePicUrl());
-        return ResponseEntity.ok(mapper.convertValue(
-                profileRepository.save(profileEntity),
-                ProfileModel.class));
+    public ResponseEntity<Iterable<ProfileModel>> getAll() {
+        Iterable<ProfileEntity> allProfiles = profileRepository.findAll();
+
+        ArrayList<ProfileModel> profileModels = new ArrayList<>();
+
+        allProfiles.forEach(entity ->
+                profileModels.add(
+                        mapper.convertValue(entity,ProfileModel.class)
+                ));
+
+        return ResponseEntity.ok(profileModels);
     }
 }

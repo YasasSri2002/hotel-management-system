@@ -4,10 +4,9 @@ import com.yasas.hotel.model.ProfileModel;
 import com.yasas.hotel.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,9 +15,9 @@ public class ProfileController {
 
     private final ProfileService profileService;
 
-    @PostMapping
-    public ResponseEntity<ProfileModel> create(@RequestBody ProfileModel profile){
-        return profileService.create(profile);
+    @GetMapping
+    public ResponseEntity<Iterable<ProfileModel>> getAll(){
+        return profileService.getAll();
     }
 
 }

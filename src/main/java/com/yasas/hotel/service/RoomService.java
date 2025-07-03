@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public interface RoomService  {
 
@@ -12,7 +13,7 @@ public interface RoomService  {
 
     ResponseEntity<List<RoomModel>> retrieveAllRoom();
 
-    ResponseEntity<Map<String,String>> deleteById(Integer roomId);
+    ResponseEntity<Map<String,String>> deleteById(Long roomId);
 
     ResponseEntity<RoomModel> update(RoomModel roomModel);
 

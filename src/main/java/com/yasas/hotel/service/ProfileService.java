@@ -5,6 +5,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface ProfileService {
 
-    ResponseEntity<ProfileModel>create(ProfileModel profile);
 
+  ResponseEntity<Iterable<ProfileModel>> getAll();
 }

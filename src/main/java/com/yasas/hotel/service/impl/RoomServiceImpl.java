@@ -10,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -40,7 +37,6 @@ public class RoomServiceImpl implements RoomService {
     public ResponseEntity<RoomModel> persistNewRoom(RoomModel roomModel){
 
         RoomEntity roomEntity = new RoomEntity();
-        roomEntity.setRoomId(roomModel.getRoomId());
         roomEntity.setType(roomModel.getType());
         roomEntity.setDescription(roomModel.getDescription());
         roomEntity.setPrice(roomModel.getPrice());
@@ -57,7 +53,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public ResponseEntity<Map<String,String>> deleteById(Integer roomId) {
+    public ResponseEntity<Map<String,String>> deleteById(Long roomId) {
         if(roomRepository.existsById(roomId)){
             roomRepository.deleteById(roomId);
             return ResponseEntity.ok(Map.of("Delete message",

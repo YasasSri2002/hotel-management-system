@@ -2,6 +2,9 @@ package com.yasas.hotel.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.UUID;
 
 @Data
 @Table(name = "Rooms")
@@ -11,7 +14,8 @@ import lombok.*;
 public class RoomEntity {
 
     @Id
-    private  Integer roomId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long roomId;
 
     private String type;
 

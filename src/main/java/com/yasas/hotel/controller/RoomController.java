@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("api/v1/admin")
 public class RoomController {
 
     private final RoomService roomService;
-
 
 
     @PostMapping("/save-room")
@@ -35,7 +35,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/by-roomId")
-    public ResponseEntity<Map<String, String>>deleteById(@RequestParam Integer roomId){
+    public ResponseEntity<Map<String, String>>deleteById(@RequestParam Long roomId){
         return roomService.deleteById(roomId);
 
     }

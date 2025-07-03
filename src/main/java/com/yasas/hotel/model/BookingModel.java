@@ -1,25 +1,25 @@
 package com.yasas.hotel.model;
 
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
 
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserModel {
+public class BookingModel {
 
     private UUID id;
 
-    private String name;
+    private LocalDateTime startingDateTime;
 
-    private String contactNo;
+    private LocalDateTime endingDateTime;
 
-    private String email;
+    private Long roomId;
 
-    private UUID profileId;
+
 }

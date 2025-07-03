@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class ClientEntity {
     @Id
     @UuidGenerator(style = UuidGenerator.Style.TIME)
     private UUID id;
@@ -24,7 +24,11 @@ public class UserEntity {
 
     private String contactNo;
 
-    @OneToOne
+    private String password;
+
+    private String role;
+
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
 
