@@ -1,5 +1,6 @@
 package com.yasas.hotel.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
@@ -25,7 +26,7 @@ public class RoomEntity {
 
     private String time;
 
-
-
+    @OneToOne(mappedBy = "room", fetch = FetchType.EAGER)
+    private BookingEntity booking;
 
 }

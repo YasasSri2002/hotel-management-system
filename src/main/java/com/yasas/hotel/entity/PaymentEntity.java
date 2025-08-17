@@ -1,8 +1,7 @@
 package com.yasas.hotel.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class PaymentEntity {
 
     @Id
-    @UuidGenerator(style = UuidGenerator.Style.TIME)
+    @UuidGenerator(style = UuidGenerator.Style.RANDOM)
     private UUID id;
 
     private String amount;
@@ -32,5 +31,12 @@ public class PaymentEntity {
 
     private String status;
 
+    @UuidGenerator(style = UuidGenerator.Style.TIME)
     private UUID transactionId;
+
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
+    @JsonManagedReference
+    private BookingEntity booking;
+
 }

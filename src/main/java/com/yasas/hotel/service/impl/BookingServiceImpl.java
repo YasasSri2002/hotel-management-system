@@ -2,11 +2,15 @@ package com.yasas.hotel.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yasas.hotel.entity.BookingEntity;
+import com.yasas.hotel.entity.PaymentEntity;
 import com.yasas.hotel.entity.RoomEntity;
 import com.yasas.hotel.exception.RoomIsNotFoundException;
 import com.yasas.hotel.model.BookingModel;
+import com.yasas.hotel.model.request.BookingPaymentRequestModel;
+import com.yasas.hotel.model.response.BookingPaymentResponseModel;
 import com.yasas.hotel.model.response.BookingResponseModel;
 import com.yasas.hotel.repository.BookingRepository;
+import com.yasas.hotel.repository.PaymentRepository;
 import com.yasas.hotel.repository.RoomRepository;
 import com.yasas.hotel.service.BookingService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+
+import static com.yasas.hotel.converter.EntityToModelConverter.bookingEntityToResponseModel;
 
 @Service
 @RequiredArgsConstructor
@@ -24,10 +31,12 @@ public class BookingServiceImpl implements BookingService {
 
     private final RoomRepository roomRepository;
 
+    private final PaymentRepository paymentRepository;
+
     private final ObjectMapper mapper;
 
     @Override
-    public ResponseEntity<BookingModel> make(BookingModel book) {
+    public ResponseEntity<BookingModel> bookingWithoutPayment(BookingModel book) {
 
         BookingEntity bookingEntity = new BookingEntity();
         bookingEntity.setStartingDateTime(book.getStartingDateTime());
@@ -37,6 +46,8 @@ public class BookingServiceImpl implements BookingService {
                 RoomIsNotFoundException("room is not found")
         );
         bookingEntity.setRoom(room);
+
+
 
 
         return ResponseEntity.ok(mapper.convertValue(
@@ -56,5 +67,47 @@ public class BookingServiceImpl implements BookingService {
         ));
 
         return ResponseEntity.ok(bookingEntities);
+    }
+
+    @Override
+    public ResponseEntity<BookingPaymentResponseModel> bookingWithPayment
+            (BookingPaymentRequestModel bookingPaymentRequest) {
+
+        BookingEntity bookingEntity = new BookingEntity();
+
+        bookingEntity.setStartingDateTime(
+                bookingPaymentRequest.getBooking().getStartingDateTime());
+
+        bookingEntity.setEndingDateTime(
+                bookingPaymentRequest.getBooking().getEndingDateTime());
+
+        RoomEntity room = roomRepository.findById(bookingPaymentRequest.getBooking()
+                        .getRoomId()).orElseThrow(() -> new
+                RoomIsNotFoundException("room is not found")
+        );
+        bookingEntity.setRoom(room);
+
+
+        HashSet<PaymentEntity> paymentEntitiesSet = new HashSet<>();
+
+        bookingPaymentRequest.getPayment().forEach(paymentModel -> {
+            PaymentEntity paymentEntity = new PaymentEntity();
+            paymentEntity.setPaymentDate(paymentModel.getPaymentDate());
+            paymentEntity.setPaymentMethod(paymentModel.getPaymentMethod());
+            paymentEntity.setAmount(paymentModel.getAmount());
+            paymentEntity.setStatus(paymentModel.getStatus());
+            paymentEntity.setBooking(bookingEntity);
+            PaymentEntity savedEntity = paymentRepository.save(paymentEntity);
+            paymentEntitiesSet.add(savedEntity);
+        });
+
+        bookingEntity.setPayment(paymentEntitiesSet);
+
+        BookingEntity savedBookingEntity = bookingRepository.save(bookingEntity);
+
+        BookingPaymentResponseModel responseModel =
+                bookingEntityToResponseModel(savedBookingEntity);
+
+        return ResponseEntity.ok(responseModel);
     }
 }

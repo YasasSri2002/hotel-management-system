@@ -2,6 +2,7 @@ package com.yasas.hotel.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -20,4 +21,5 @@ public class PaymentModel {
     private String status;
 
     private UUID transactionId;
+
 }
