@@ -1,6 +1,8 @@
 package com.yasas.hotel.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +19,10 @@ import java.util.UUID;
 @Table(name="payment")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class PaymentEntity {
 
     @Id
@@ -34,9 +40,8 @@ public class PaymentEntity {
     @UuidGenerator(style = UuidGenerator.Style.TIME)
     private UUID transactionId;
 
-    @ManyToOne
-    @JoinColumn(name = "booking_id")
-    @JsonManagedReference
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "booking_id" )
     private BookingEntity booking;
 
 }

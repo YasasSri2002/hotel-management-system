@@ -13,6 +13,7 @@ import com.yasas.hotel.repository.BookingRepository;
 import com.yasas.hotel.repository.PaymentRepository;
 import com.yasas.hotel.repository.RoomRepository;
 import com.yasas.hotel.service.BookingService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import static com.yasas.hotel.converter.EntityToModelConverter.bookingEntityToResponseModel;
 
@@ -70,6 +72,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<BookingPaymentResponseModel> bookingWithPayment
             (BookingPaymentRequestModel bookingPaymentRequest) {
 
@@ -85,6 +88,7 @@ public class BookingServiceImpl implements BookingService {
                         .getRoomId()).orElseThrow(() -> new
                 RoomIsNotFoundException("room is not found")
         );
+
         bookingEntity.setRoom(room);
 
 
@@ -97,8 +101,7 @@ public class BookingServiceImpl implements BookingService {
             paymentEntity.setAmount(paymentModel.getAmount());
             paymentEntity.setStatus(paymentModel.getStatus());
             paymentEntity.setBooking(bookingEntity);
-            PaymentEntity savedEntity = paymentRepository.save(paymentEntity);
-            paymentEntitiesSet.add(savedEntity);
+            paymentEntitiesSet.add(paymentEntity);
         });
 
         bookingEntity.setPayment(paymentEntitiesSet);

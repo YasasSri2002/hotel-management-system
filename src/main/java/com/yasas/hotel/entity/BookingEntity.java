@@ -1,7 +1,6 @@
 package com.yasas.hotel.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +18,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name="booking")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class BookingEntity {
     @Id
     @UuidGenerator(style = UuidGenerator.Style.TIME)
@@ -31,10 +34,8 @@ public class BookingEntity {
 
     @OneToOne
     @JoinColumn(name = "room_Id")
-    @JsonIgnore
     private RoomEntity room;
 
-    @OneToMany(mappedBy = "booking" ,cascade = CascadeType.PERSIST,  orphanRemoval = true)
-    @JsonBackReference
+    @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<PaymentEntity> payment;
 }
