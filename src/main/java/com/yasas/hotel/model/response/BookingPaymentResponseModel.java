@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,7 +25,7 @@ public class BookingPaymentResponseModel {
     private LocalDateTime endingDateTime;
 
 
-    private RoomModel room;
+    private List<RoomModel> rooms;
 
     private Set<PaymentModel> payment;
 

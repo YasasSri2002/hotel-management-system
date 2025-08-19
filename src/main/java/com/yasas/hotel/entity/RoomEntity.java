@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -32,7 +33,12 @@ public class RoomEntity {
 
     private String time;
 
-    @OneToOne(mappedBy = "room", fetch = FetchType.EAGER)
-    private BookingEntity booking;
+    @ManyToMany
+    @JoinTable(
+            name = "booking_rooms",
+            joinColumns = @JoinColumn(name = "booking_id"),
+            inverseJoinColumns = @JoinColumn(name = "room_id")
+    )
+    private List<BookingEntity> booking;
 
 }

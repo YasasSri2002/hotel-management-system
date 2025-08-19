@@ -3,6 +3,7 @@ package com.yasas.hotel.model.request;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class BookingRequestModel {
@@ -11,6 +12,6 @@ public class BookingRequestModel {
 
     private LocalDateTime endingDateTime;
 
-    private Long roomId;
+    private List<Long> roomId;
 
 }

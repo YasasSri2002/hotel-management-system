@@ -8,7 +8,9 @@ import com.yasas.hotel.model.RoomModel;
 
 import com.yasas.hotel.model.response.BookingPaymentResponseModel;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class EntityToModelConverter {
@@ -21,16 +23,22 @@ public class EntityToModelConverter {
         responseModel.setEndingDateTime(bookingEntity.getEndingDateTime());
         responseModel.setStartingDateTime(bookingEntity.getStartingDateTime());
 
-        RoomModel roomModel = new RoomModel();
-        RoomEntity roomEntity = bookingEntity.getRoom();
 
-        roomModel.setRoomId(roomEntity.getRoomId());
-        roomModel.setPrice(roomEntity.getPrice());
-        roomModel.setType(roomEntity.getType());
-        roomModel.setTime(roomEntity.getTime());
-        roomModel.setDescription(roomEntity.getDescription());
+        List<RoomEntity> roomsList = bookingEntity.getRooms();
+        ArrayList<RoomModel> roomModels = new ArrayList<>();
+        roomsList.forEach(roomEntity -> {
+            RoomModel roomModel = new RoomModel();
+            roomModel.setRoomId(roomEntity.getRoomId());
+            roomModel.setPrice(roomEntity.getPrice());
+            roomModel.setType(roomEntity.getType());
+            roomModel.setTime(roomEntity.getTime());
+            roomModel.setDescription(roomEntity.getDescription());
+            roomModels.add(roomModel);
 
-        responseModel.setRoom(roomModel);
+        });
+
+
+        responseModel.setRooms(roomModels);
 
         Set<PaymentModel> paymentModelSet = new HashSet<>();
         Set<PaymentEntity> paymentEntitieSet = bookingEntity.getPayment();

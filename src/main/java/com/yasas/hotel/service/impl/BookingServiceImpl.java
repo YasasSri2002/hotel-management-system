@@ -44,12 +44,9 @@ public class BookingServiceImpl implements BookingService {
         bookingEntity.setStartingDateTime(book.getStartingDateTime());
         bookingEntity.setEndingDateTime(book.getEndingDateTime());
 
-        RoomEntity room = roomRepository.findById(book.getRoomId()).orElseThrow(() -> new
-                RoomIsNotFoundException("room is not found")
-        );
-        bookingEntity.setRoom(room);
+        Iterable<RoomEntity> allRooms = roomRepository.findAllById(book.getRoomId());
 
-
+        bookingEntity.setRooms((List<RoomEntity>) allRooms);
 
 
         return ResponseEntity.ok(mapper.convertValue(
@@ -84,12 +81,10 @@ public class BookingServiceImpl implements BookingService {
         bookingEntity.setEndingDateTime(
                 bookingPaymentRequest.getBooking().getEndingDateTime());
 
-        RoomEntity room = roomRepository.findById(bookingPaymentRequest.getBooking()
-                        .getRoomId()).orElseThrow(() -> new
-                RoomIsNotFoundException("room is not found")
-        );
+        Iterable<RoomEntity> allRoomBook =
+                roomRepository.findAllById(bookingPaymentRequest.getBooking().getRoomId());
 
-        bookingEntity.setRoom(room);
+        bookingEntity.setRooms((List<RoomEntity>) allRoomBook);
 
 
         HashSet<PaymentEntity> paymentEntitiesSet = new HashSet<>();

@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -32,9 +33,8 @@ public class BookingEntity {
 
     private LocalDateTime endingDateTime;
 
-    @OneToOne
-    @JoinColumn(name = "room_Id")
-    private RoomEntity room;
+    @ManyToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    private List<RoomEntity> rooms;
 
     @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<PaymentEntity> payment;
