@@ -103,6 +103,11 @@ public class BookingServiceImpl implements BookingService {
 
         BookingEntity savedBookingEntity = bookingRepository.save(bookingEntity);
 
+        ArrayList<BookingEntity> bookingEntities = new ArrayList<>();
+        bookingEntities.add(savedBookingEntity);
+
+        allRoomBook.forEach(rooms->rooms.setBooking(bookingEntities));
+
         BookingPaymentResponseModel responseModel =
                 bookingEntityToResponseModel(savedBookingEntity);
 
