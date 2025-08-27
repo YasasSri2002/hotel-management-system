@@ -15,6 +15,10 @@ import java.util.Set;
 
 public class EntityToModelConverter {
 
+    private EntityToModelConverter(){
+
+    }
+
     public static BookingPaymentResponseModel bookingEntityToResponseModel(
             BookingEntity bookingEntity){
 
@@ -24,22 +28,22 @@ public class EntityToModelConverter {
         responseModel.setStartingDateTime(bookingEntity.getStartingDateTime());
 
 
-        List<RoomEntity> roomsList = bookingEntity.getRooms();
-        ArrayList<RoomModel> roomModels = new ArrayList<>();
-        roomsList.forEach(roomEntity -> {
-            RoomModel roomModel = new RoomModel();
-            roomModel.setRoomId(roomEntity.getRoomId());
-            roomModel.setPrice(roomEntity.getPrice());
-            roomModel.setType(roomEntity.getType());
-            roomModel.setTime(roomEntity.getTime());
-            roomModel.setDescription(roomEntity.getDescription());
-            roomModels.add(roomModel);
-
-        });
+        ArrayList<RoomModel> roomModels = getRoomModels(bookingEntity);
 
 
         responseModel.setRooms(roomModels);
 
+        Set<PaymentModel> paymentModelSet = getPaymentModels(bookingEntity);
+
+        responseModel.setPayment(paymentModelSet);
+
+
+        return responseModel;
+
+
+    }
+
+    private static Set<PaymentModel> getPaymentModels(BookingEntity bookingEntity) {
         Set<PaymentModel> paymentModelSet = new HashSet<>();
         Set<PaymentEntity> paymentEntitieSet = bookingEntity.getPayment();
 
@@ -53,13 +57,23 @@ public class EntityToModelConverter {
             paymentModel.setPaymentMethod(paymentEntity.getPaymentMethod());
             paymentModelSet.add(paymentModel);
         });
+        return paymentModelSet;
+    }
 
-        responseModel.setPayment(paymentModelSet);
+    private static ArrayList<RoomModel> getRoomModels(BookingEntity bookingEntity) {
+        List<RoomEntity> roomsList = bookingEntity.getRooms();
+        ArrayList<RoomModel> roomModels = new ArrayList<>();
+        roomsList.forEach(roomEntity -> {
+            RoomModel roomModel = new RoomModel();
+            roomModel.setRoomId(roomEntity.getRoomId());
+            roomModel.setPrice(roomEntity.getPrice());
+            roomModel.setType(roomEntity.getType());
+            roomModel.setTime(roomEntity.getTime());
+            roomModel.setDescription(roomEntity.getDescription());
+            roomModels.add(roomModel);
 
-
-        return responseModel;
-
-
+        });
+        return roomModels;
     }
 
 }

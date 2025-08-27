@@ -1,6 +1,6 @@
 package com.yasas.hotel.controller;
 
-import com.yasas.hotel.entity.BookingEntity;
+
 import com.yasas.hotel.model.BookingModel;
 import com.yasas.hotel.model.request.BookingPaymentRequestModel;
 import com.yasas.hotel.model.response.BookingPaymentResponseModel;

@@ -1,5 +1,6 @@
 package com.yasas.hotel.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -33,12 +34,8 @@ public class RoomEntity {
 
     private String time;
 
-    @ManyToMany
-    @JoinTable(
-            name = "booking_rooms",
-            joinColumns = @JoinColumn(name = "booking_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id")
-    )
+
+    @ManyToMany(mappedBy = "rooms", cascade = CascadeType.ALL)
     private List<BookingEntity> booking;
 
 }

@@ -1,6 +1,7 @@
 package com.yasas.hotel.exception.handler;
 
 import com.yasas.hotel.exception.ClientAlreadyExistException;
+import com.yasas.hotel.exception.PhoneNumberIsWrongException;
 import com.yasas.hotel.exception.RoomIsNotFoundException;
 import com.yasas.hotel.model.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,16 @@ public class GlobalExceptionHandler {
                         .message(ex.getMessage())
                         .build()
         );
+    }
+    @ExceptionHandler(PhoneNumberIsWrongException.class)
+    public ResponseEntity<ErrorResponse>wrongPhoneNumber(PhoneNumberIsWrongException ex){
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                ErrorResponse.builder()
+                        .status(HttpStatus.BAD_REQUEST)
+                        .message(ex.getMessage())
+                        .build()
+        );
+
     }
 }

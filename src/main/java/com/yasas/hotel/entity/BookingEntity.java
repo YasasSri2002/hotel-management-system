@@ -33,7 +33,12 @@ public class BookingEntity {
 
     private LocalDateTime endingDateTime;
 
-    @ManyToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "booking_rooms",
+            joinColumns = @JoinColumn(name = "booking_id"),
+            inverseJoinColumns = @JoinColumn(name = "room_id")
+    )
     private List<RoomEntity> rooms;
 
     @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL,  orphanRemoval = true)

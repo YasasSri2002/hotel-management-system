@@ -4,13 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yasas.hotel.entity.BookingEntity;
 import com.yasas.hotel.entity.PaymentEntity;
 import com.yasas.hotel.entity.RoomEntity;
-import com.yasas.hotel.exception.RoomIsNotFoundException;
 import com.yasas.hotel.model.BookingModel;
 import com.yasas.hotel.model.request.BookingPaymentRequestModel;
 import com.yasas.hotel.model.response.BookingPaymentResponseModel;
 import com.yasas.hotel.model.response.BookingResponseModel;
 import com.yasas.hotel.repository.BookingRepository;
-import com.yasas.hotel.repository.PaymentRepository;
 import com.yasas.hotel.repository.RoomRepository;
 import com.yasas.hotel.service.BookingService;
 import jakarta.transaction.Transactional;
@@ -21,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+
 
 import static com.yasas.hotel.converter.EntityToModelConverter.bookingEntityToResponseModel;
 
@@ -33,7 +31,6 @@ public class BookingServiceImpl implements BookingService {
 
     private final RoomRepository roomRepository;
 
-    private final PaymentRepository paymentRepository;
 
     private final ObjectMapper mapper;
 
