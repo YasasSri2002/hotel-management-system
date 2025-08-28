@@ -5,10 +5,9 @@ import com.yasas.hotel.model.response.StaffResponseModel;
 import com.yasas.hotel.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,5 +21,17 @@ public class StaffController {
             @RequestBody StaffModel staffModel){
         return staffService.newMember(staffModel);
     }
+
+    @GetMapping
+    public ResponseEntity<List<StaffResponseModel>>viewAllMembers(){
+        return staffService.viewAllMembers();
+    }
+
+    @PatchMapping
+    public ResponseEntity<StaffResponseModel>update(
+            @RequestParam String email, @RequestBody StaffModel staffModel){
+        return staffService.updateMember(email,staffModel);
+    }
+
 
 }
