@@ -16,5 +16,7 @@ public class BookingResponseModel {
 
     private LocalDateTime endingDateTime;
 
+    private String status;
+
     private RoomEntity room;
 }

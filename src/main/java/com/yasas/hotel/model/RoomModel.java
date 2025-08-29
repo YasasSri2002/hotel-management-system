@@ -17,5 +17,4 @@ public class RoomModel {
 
     private Double price;
 
-    private String time;
 }

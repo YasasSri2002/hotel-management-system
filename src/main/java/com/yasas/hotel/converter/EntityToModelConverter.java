@@ -68,7 +68,6 @@ public class EntityToModelConverter {
             roomModel.setRoomId(roomEntity.getRoomId());
             roomModel.setPrice(roomEntity.getPrice());
             roomModel.setType(roomEntity.getType());
-            roomModel.setTime(roomEntity.getTime());
             roomModel.setDescription(roomEntity.getDescription());
             roomModels.add(roomModel);
 

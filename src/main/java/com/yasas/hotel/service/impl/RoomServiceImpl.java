@@ -84,9 +84,7 @@ public class RoomServiceImpl implements RoomService {
         if(roomModel.getPrice() != null){
             roomEntity.setPrice(roomModel.getPrice());
         }
-        if(roomModel.getTime() != null){
-            roomEntity.setTime(roomModel.getTime());
-        }
+
 
         return ResponseEntity.ok(
                 mapper.convertValue(

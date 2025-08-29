@@ -8,7 +8,7 @@ CREATE TABLE `profile` (
 
 -- hotel.`user` definition
 
-CREATE TABLE `user` (
+CREATE TABLE `client` (
   `id` binary(16) NOT NULL,
   `contact_no` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -48,7 +48,6 @@ CREATE TABLE `rooms` (
   `room_id` bigint NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
   `price` double DEFAULT NULL,
-  `time` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`room_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -83,7 +82,7 @@ CREATE TABLE `payment` (
 -- hotel.services definition
 
 CREATE TABLE `services` (
-  `id` binary(16) NOT NULL,
+  `services_id` binary(16) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `price` double DEFAULT NULL,

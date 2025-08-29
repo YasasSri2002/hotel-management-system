@@ -24,6 +24,7 @@ public class BookingPaymentResponseModel {
 
     private LocalDateTime endingDateTime;
 
+    private String status;
 
     private List<RoomModel> rooms;
 

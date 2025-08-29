@@ -32,7 +32,6 @@ public class RoomEntity {
 
     private Double price;
 
-    private String time;
 
 
     @ManyToMany(mappedBy = "rooms", cascade = CascadeType.ALL)

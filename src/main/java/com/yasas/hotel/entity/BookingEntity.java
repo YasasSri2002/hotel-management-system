@@ -46,4 +46,13 @@ public class BookingEntity {
 
     @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<PaymentEntity> payment;
+
+    @ManyToMany
+    @JoinTable(
+            name = "booking_services",
+            joinColumns = @JoinColumn(name= "booking_id"),
+            inverseJoinColumns = @JoinColumn(name = "services_id")
+    )
+    private List<HotelServiceEntity> services;
+
 }

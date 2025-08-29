@@ -12,6 +12,8 @@ public class BookingRequestModel {
 
     private LocalDateTime endingDateTime;
 
+    private String status;
+
     private List<Long> roomId;
 
 }
