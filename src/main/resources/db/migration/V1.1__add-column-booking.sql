@@ -1,0 +1,1 @@
+ALTER TABLE booking Add COLUMN status varchar(255);

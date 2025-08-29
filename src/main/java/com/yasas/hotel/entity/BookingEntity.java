@@ -33,6 +33,9 @@ public class BookingEntity {
 
     private LocalDateTime endingDateTime;
 
+    private String status;
+
+
     @ManyToMany
     @JoinTable(
             name = "booking_rooms",
