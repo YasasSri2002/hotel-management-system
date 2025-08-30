@@ -78,6 +78,10 @@ public class BookingServiceImpl implements BookingService {
         bookingEntity.setEndingDateTime(
                 bookingPaymentRequest.getBooking().getEndingDateTime());
 
+        bookingEntity.setStatus(
+                bookingPaymentRequest.getBooking().getStatus()
+        );
+
         Iterable<RoomEntity> allRoomBook =
                 roomRepository.findAllById(bookingPaymentRequest.getBooking().getRoomId());
 
