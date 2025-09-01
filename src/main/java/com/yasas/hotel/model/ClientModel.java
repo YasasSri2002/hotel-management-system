@@ -22,7 +22,6 @@ public class ClientModel {
 
     private String email;
 
-    private String password;
 
     private String role;
 

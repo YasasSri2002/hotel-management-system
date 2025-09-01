@@ -1,7 +1,9 @@
 package com.yasas.hotel.config;
 
 import com.yasas.hotel.entity.ClientEntity;
+import com.yasas.hotel.entity.SecurityUserEntity;
 import com.yasas.hotel.repository.ClientRepository;
+import com.yasas.hotel.repository.SecurityUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -14,19 +16,19 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClientUserDetailsService implements UserDetailsService{
+public class SecurityUserDetailsService implements UserDetailsService{
 
-    private final ClientRepository clientRepository;
+    private final SecurityUserRepository securityUserRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws
             UsernameNotFoundException {
-        ClientEntity client = clientRepository.findByEmail(username).orElseThrow(() ->
+        SecurityUserEntity user = securityUserRepository.findByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException("user name is not valid"));
 
         List<SimpleGrantedAuthority> simpleGrantedAuthorities =
-                List.of(new SimpleGrantedAuthority(client.getRole()));
+                List.of(new SimpleGrantedAuthority(user.getRole()));
 
-        return new User(client.getEmail(), client.getPassword(), simpleGrantedAuthorities);
+        return new User(user.getUsername(), user.getPassword(), simpleGrantedAuthorities);
     }
 }

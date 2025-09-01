@@ -24,7 +24,6 @@ public class ClientEntity {
 
     private String contactNo;
 
-    private String password;
 
     private String role;
 

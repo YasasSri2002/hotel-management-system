@@ -43,7 +43,6 @@ public class ClientServiceImpl implements ClientService {
         clientEntity.setName(client.getName());
         clientEntity.setEmail(client.getEmail());
         clientEntity.setContactNo(client.getContactNo());
-        clientEntity.setPassword(passwordEncoder.encode(client.getPassword()));
         clientEntity.setRole(client.getRole());
 
         ProfileEntity profileEntity = new ProfileEntity();
