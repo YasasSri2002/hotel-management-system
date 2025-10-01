@@ -29,14 +29,13 @@ public class ClientServiceImpl implements ClientService {
 
     private final ProfileRepository profileRepository;
 
-    private final PasswordEncoder passwordEncoder;
+
 
     @Transactional
     @Override
     public ResponseEntity<ClientModel> create(ClientModel client) {
         Optional<ClientEntity> byEmail =
                 clientRepository.findByEmail(client.getEmail());
-
 
 
         ClientEntity clientEntity = new ClientEntity();

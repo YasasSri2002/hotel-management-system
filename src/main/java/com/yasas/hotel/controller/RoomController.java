@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/admin")
+@RequestMapping("/api/v1/admin")
 public class RoomController {
 
     private final RoomService roomService;
