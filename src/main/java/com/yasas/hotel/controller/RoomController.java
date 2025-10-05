@@ -24,7 +24,7 @@ public class RoomController {
         return roomService.persistNewRoom(roomModel);
     }
 
-    @GetMapping("get-room")
+    @GetMapping("/get-room")
     public ResponseEntity<List<RoomModel>> getAllRoom(){
         return roomService.retrieveAllRoom();
     }
