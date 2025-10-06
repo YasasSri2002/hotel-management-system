@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <title>${realm.displayName!''} Login</title>
+  <link rel="stylesheet" href="${url.resourcesPath}/css/styles.css">
 </head>
 <body>
-<h1>Login Page</h1>
+  <div class="login-section">
+  <h1>Login to ${realm.displayName!''}</h1>
+        <form action="${url.loginAction}" method="post" class="input-container">
 
-<form action="${url.loginAction!''}" method="post">
-    <label>Username:</label>
-    <input name="username" value="${login.username!''?html}"/>
+            <div class="input-style">
+                <label>Username</label>
+                <input type="text" name="username" autofocus>
+            </div>
 
-    <label>Password:</label>
-    <input type="password" name="password"/>
+            <div class="input-style">
+                <label>Password</label>
+                <input type="password" name="password">
+            </div>
 
-    <button type="submit">Login</button>
-</form>
+            <button type="submit">${msg("doSignIn")!''}</button>
+          </form>
+  </div>
 </body>
 </html>

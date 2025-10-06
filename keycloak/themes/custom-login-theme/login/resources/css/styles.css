@@ -1,0 +1,50 @@
+.input-container{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap: 15px 15px;
+
+}
+
+.input-style{
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+    gap: 15px;
+}
+
+.input-style > input{
+    width: 20em;
+    height: 2em;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 0px 0px 0px 10px;
+    font-size: 20px;
+}
+
+.input-style > input:focus{
+    padding: 0px 0px 0px 10px;
+    color: black;
+}
+
+.login-section{
+    width: 100%;
+    height:100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.login-section  h1{
+    font-size: 4em;
+}
+
+.login-section label{
+    font-size: 2em;
+}
+
