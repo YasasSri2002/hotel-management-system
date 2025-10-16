@@ -19,7 +19,7 @@ public class BookingController {
 
     private final BookingService bookingService;
 
-    @PostMapping
+    @PostMapping("/make")
     public ResponseEntity<BookingModel>make(@RequestBody BookingModel book){
         return bookingService.bookingWithoutPayment(book);
     }

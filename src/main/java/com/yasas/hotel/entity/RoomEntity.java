@@ -1,15 +1,15 @@
 package com.yasas.hotel.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.UuidGenerator;
+
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Data
 @Table(name = "Rooms")
@@ -21,9 +21,7 @@ import java.util.UUID;
         property = "roomId"
 )
 public class RoomEntity {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roomId;
 
     private String type;
@@ -31,6 +29,14 @@ public class RoomEntity {
     private String description;
 
     private Double price;
+
+    private Double roomSize;
+
+    private Double minGuestSize;
+
+    private Double maxGuestSize;
+
+
 
 
 

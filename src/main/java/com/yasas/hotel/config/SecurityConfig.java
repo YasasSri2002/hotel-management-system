@@ -12,14 +12,22 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 
-import java.util.Collections;
 
+import java.util.Collections;
+import java.util.List;
 
 
 @Configuration
 @EnableMethodSecurity
 @Profile("prod")
 public class SecurityConfig {
+
+    private final String[] publicUrls = {
+            "/api/v1/admin/get-room",
+            "/api/v1/admin/save-room",
+            "/api/v1/booking/make"
+
+    };
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -29,17 +37,18 @@ public class SecurityConfig {
         http
                 .cors(corsConfigurer -> corsConfigurer.configurationSource(request->{
                     CorsConfiguration corsConfiguration = new CorsConfiguration();
+                    corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
                     corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
-                    corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
+                    corsConfiguration.setAllowedMethods(Collections.singletonList("*"));
                     corsConfiguration.setAllowCredentials(true);
-                    corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
                     corsConfiguration.setMaxAge(3600L);
-                    corsConfiguration.setExposedHeaders(Collections.singletonList("*"));
+                    corsConfiguration.setExposedHeaders(List.of("Authorization"));
                     return corsConfiguration;
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests ->
-                        requests.anyRequest().permitAll()
+                        requests.requestMatchers(publicUrls).permitAll()
+                                .anyRequest().authenticated()
 
 
                 );

@@ -31,7 +31,6 @@ html, body{
     width:100%;
     display: grid;
     justify-items: center;
-    border : 2px solid green;
     gap: 0.5em;
 }
 

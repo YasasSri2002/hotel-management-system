@@ -2,7 +2,7 @@ package com.yasas.hotel.model;
 
 import lombok.*;
 
-import java.util.UUID;
+
 
 @Data
 @AllArgsConstructor
@@ -16,5 +16,11 @@ public class RoomModel {
     private String description;
 
     private Double price;
+
+    private Double roomSize;
+
+    private Double minGuestSize;
+
+    private Double maxGuestSize;
 
 }

@@ -37,9 +37,13 @@ public class RoomServiceImpl implements RoomService {
     public ResponseEntity<RoomModel> persistNewRoom(RoomModel roomModel){
 
         RoomEntity roomEntity = new RoomEntity();
+        roomEntity.setRoomId(roomModel.getRoomId());
         roomEntity.setType(roomModel.getType());
         roomEntity.setDescription(roomModel.getDescription());
         roomEntity.setPrice(roomModel.getPrice());
+        roomEntity.setRoomSize(roomModel.getRoomSize());
+        roomEntity.setMinGuestSize(roomModel.getMinGuestSize());
+        roomEntity.setMaxGuestSize(roomModel.getMaxGuestSize());
 
         return ResponseEntity.ok(
                 mapper.convertValue(
@@ -67,13 +71,13 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public ResponseEntity<RoomModel> update(RoomModel roomModel) {
 
-        Optional<RoomEntity> exsistingEntity
+        Optional<RoomEntity> existingEntity
                 = roomRepository.findById(roomModel.getRoomId());
 
-        if(exsistingEntity.isEmpty()){
+        if(existingEntity.isEmpty()){
             throw new RoomIsNotFoundException("Incorrect room id");
         }
-        RoomEntity roomEntity = exsistingEntity.get();
+        RoomEntity roomEntity = existingEntity.get();
 
         if(roomModel.getDescription() != null){
             roomEntity.setDescription(roomModel.getDescription());
@@ -83,6 +87,15 @@ public class RoomServiceImpl implements RoomService {
         }
         if(roomModel.getPrice() != null){
             roomEntity.setPrice(roomModel.getPrice());
+        }
+        if(roomModel.getRoomSize() != null){
+            roomEntity.setRoomSize(roomModel.getRoomSize());
+        }
+        if(roomModel.getMaxGuestSize() != null){
+            roomEntity.setMaxGuestSize(roomModel.getMaxGuestSize());
+        }
+        if(roomModel.getMinGuestSize() != null){
+            roomEntity.setMinGuestSize(roomModel.getMinGuestSize());
         }
 
 
