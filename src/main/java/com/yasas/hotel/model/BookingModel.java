@@ -14,8 +14,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class BookingModel {
 
-    private UUID id;
-
     private LocalDateTime startingDateTime;
 
     private LocalDateTime endingDateTime;
