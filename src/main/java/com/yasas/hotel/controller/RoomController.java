@@ -45,5 +45,10 @@ public class RoomController {
         return roomService.update(roomModel);
     }
 
+    @GetMapping("/get-room-by-id")
+    public ResponseEntity<RoomModel> getRoomById(@RequestParam Long roomId){
+        return roomService.getRoomById(roomId);
+    }
+
 
 }

@@ -25,6 +25,7 @@ public class SecurityConfig {
     private final String[] publicUrls = {
             "/api/v1/admin/get-room",
             "/api/v1/admin/save-room",
+            "/api/v1/admin/**",
             "/api/v1/booking/make",
             "/api/v1/booking"
 

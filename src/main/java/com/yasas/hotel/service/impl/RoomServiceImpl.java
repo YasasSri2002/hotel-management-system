@@ -119,4 +119,22 @@ public class RoomServiceImpl implements RoomService {
 
     }
 
+    @Override
+    public ResponseEntity<RoomModel> getRoomById(Long roomId) {
+        RoomEntity roomEntity = roomRepository.findById(roomId).orElseThrow(() ->
+                new RoomIsNotFoundException("Room does not exist"));
+        return ResponseEntity.ok(
+                RoomModel.builder()
+                .roomId(roomEntity.getRoomId())
+                .roomSize(roomEntity.getRoomSize())
+                .price(roomEntity.getPrice())
+                .description(roomEntity.getDescription())
+                .minGuestSize(roomEntity.getMinGuestSize())
+                .maxGuestSize(roomEntity.getMaxGuestSize())
+                .type(roomEntity.getType())
+                .build()
+        );
+
+    }
+
 }

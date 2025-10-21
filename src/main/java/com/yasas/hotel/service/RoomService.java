@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
 
 public interface RoomService  {
 
@@ -18,4 +18,7 @@ public interface RoomService  {
     ResponseEntity<RoomModel> update(RoomModel roomModel);
 
     ResponseEntity<List<RoomModel>> getAllByType(String type);
+
+    ResponseEntity<RoomModel> getRoomById(Long roomId);
+
 }
