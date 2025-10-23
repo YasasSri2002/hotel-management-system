@@ -14,6 +14,8 @@ public class BookingRequestModel {
 
     private String status;
 
+    private String specialMsg;
+
     private List<Long> roomId;
 
 }

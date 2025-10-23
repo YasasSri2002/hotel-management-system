@@ -41,6 +41,7 @@ public class BookingServiceImpl implements BookingService {
         bookingEntity.setStartingDateTime(book.getStartingDateTime());
         bookingEntity.setEndingDateTime(book.getEndingDateTime());
         bookingEntity.setStatus(book.getStatus());
+        bookingEntity.setSpecialMsg(book.getSpecialMsg());
 
         Iterable<RoomEntity> allRooms = roomRepository.findAllById(book.getRoomId());
 
@@ -81,6 +82,10 @@ public class BookingServiceImpl implements BookingService {
 
         bookingEntity.setStatus(
                 bookingPaymentRequest.getBooking().getStatus()
+        );
+
+        bookingEntity.setSpecialMsg(
+                bookingPaymentRequest.getBooking().getSpecialMsg()
         );
 
         Iterable<RoomEntity> allRoomBook =

@@ -20,6 +20,8 @@ public class BookingModel {
 
     private String status;
 
+    private String specialMsg;
+
     private List<Long> roomId;
 
 

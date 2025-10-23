@@ -9,3 +9,5 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("Login button not found!");
     }
 });
+
+const loginBtn = document.getElementById("login-button");

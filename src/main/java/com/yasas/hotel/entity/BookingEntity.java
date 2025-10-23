@@ -35,6 +35,8 @@ public class BookingEntity {
 
     private String status;
 
+    private String specialMsg;
+
 
     @ManyToMany
     @JoinTable(

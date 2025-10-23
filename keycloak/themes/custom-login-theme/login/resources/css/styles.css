@@ -194,13 +194,212 @@ html, body{
 
 **/
 
-@media screen and (max-width: 320px){
+/* Media Queries   */
+
+@media only screen and (max-width: 320px){
 
     .login-section{
         width: 100%;
+        padding: 0 15px 0 15px;
     }
 
 }
+
+@media only screen and (min-width: 540px){
+
+    .login-section{
+            width: 30em;
+        }
+
+        .form-container{
+            width: 100%;
+        }
+
+        .input-container{
+            width:100%;
+            padding: 0 1.5em 0 1.5em;
+        }
+
+        .input-style{
+            font-size: 1.1em;
+        }
+
+        .input-style > input{
+            width: 25em;
+            height: 3em;
+        }
+
+
+        .options-row{
+            font-size: 1em;
+            margin-top: .5em;
+        }
+
+        #rememberMeCheckBox {
+          width: 1.1em;
+          height: 1.1em;
+          border: 1px black solid;
+          cursor: pointer;
+        }
+
+        .remember-me{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+
+
+        .headings{
+            font-size: 1.2em;
+        }
+
+        .sub-headings{
+            font-size: 0.9em;
+
+        }
+
+        #login-button{
+            font-size: 1em;
+        }
+
+        #registrationLink{
+            font-size: 1.01em;
+        }
+
+}
+
+
+
+@media screen and (min-width: 740px){
+
+    .login-section{
+        width: 45em;
+    }
+
+    .form-container{
+        width: 100%;
+    }
+
+    .input-container{
+        width:100%;
+        padding: 0 2em 0 2em;
+    }
+
+    .input-style{
+        font-size: 1.2em;
+    }
+
+    .input-style > input{
+        width: 35em;
+        height: 4em;
+    }
+
+
+    .options-row{
+        font-size: 1.05em;
+        margin-top: .5em;
+    }
+
+    #rememberMeCheckBox {
+      width: 1.2em;
+      height: 1.2em;
+      border: 1px black solid;
+      cursor: pointer;
+    }
+
+    .remember-me{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+
+    .headings{
+        font-size: 1.3em;
+    }
+
+    .sub-headings{
+        font-size: 1em;
+
+    }
+
+    #login-button{
+        font-size: 1.02em;
+    }
+
+    #registrationLink{
+        font-size: 1.05em;
+    }
+
+}
+
+@media screen and (min-width: 1280px){
+
+    .login-section{
+        width: 50em;
+    }
+
+    .form-container{
+        width: 100%;
+    }
+
+    .input-container{
+        width:100%;
+        padding: 0 5em 0 5em;
+    }
+
+    .input-style{
+        font-size: 1.4em;
+    }
+
+    .input-style > input{
+        width: 40em;
+        height: 5em;
+    }
+
+
+    .options-row{
+        font-size: 1.08em;
+        margin-top: 1em;
+    }
+
+    #rememberMeCheckBox {
+      width: 1.5em;
+      height: 1.5em;
+      border: 1px black solid;
+      cursor: pointer;
+    }
+
+    .remember-me{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+
+    .headings{
+        font-size: 1.5em;
+    }
+
+    .sub-headings{
+        font-size: 1.1em;
+
+    }
+
+    #login-button{
+        font-size: 1.1em;
+    }
+
+    #registrationLink{
+        font-size: 1.1em;
+    }
+
+}
+
+
 
 
 

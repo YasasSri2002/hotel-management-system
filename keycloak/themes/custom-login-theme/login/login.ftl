@@ -31,7 +31,7 @@
         <div class="options-row">
           <#if realm.rememberMe == true>
             <label class="remember-me">
-              <input type="checkbox" name="rememberMe"
+              <input id="rememberMeCheckBox" type="checkbox" name="rememberMe"
                      <#if login.rememberMe?? && login.rememberMe>checked</#if>>
               Remember me
             </label>
@@ -47,10 +47,10 @@
     </form>
 
     <!-- Registration Link -->
-    <div style="margin-top: 10px">
+    <div style="margin-top: 10px" id="registrationLink" >
       <#if realm.registrationAllowed?? && realm.registrationAllowed>
         <p>Don't have an account?
-          <a href="${url.registrationUrl}" class="text-red-400">Sign up</a>
+          <a href="${url.registrationUrl}">Sign up</a>
         </p>
       </#if>
     </div>
