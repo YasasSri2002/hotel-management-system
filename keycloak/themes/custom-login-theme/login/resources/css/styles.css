@@ -97,10 +97,6 @@ html, body{
     background-color: rgba(2 ,6 ,23, 0.8);
 }
 
-#login-button:hover {
-    transform: scale(1.1);
-    translate: 0px -5px;
-}
 .options-row{
     display: flex;
     justify-content: space-between;
@@ -275,6 +271,7 @@ html, body{
 
     .login-section{
         width: 45em;
+        border-top: 1px solid gray;
     }
 
     .form-container{
@@ -355,8 +352,15 @@ html, body{
     }
 
     .input-style > input{
-        width: 40em;
+        display: inline-block;
         height: 5em;
+        font-size: 14px;
+        padding: 0 2em;
+        transition: font-size 0.2s ease;
+        box-sizing: border-box;
+        line-height: 5em;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
 
@@ -396,6 +400,13 @@ html, body{
     #registrationLink{
         font-size: 1.1em;
     }
+
+
+
+    .input-style > input:focus{
+        font-size: 14px;
+    }
+
 
 }
 

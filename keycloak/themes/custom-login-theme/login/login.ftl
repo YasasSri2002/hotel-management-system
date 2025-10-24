@@ -19,12 +19,12 @@
       <div class="input-container">
         <div class="input-style">
           <label>Username</label>
-          <input type="text" name="username" autofocus>
+          <input id="username" type="text" name="username" autofocus>
         </div>
 
         <div class="input-style">
           <label>Password</label>
-          <input type="password" name="password">
+          <input id="password" type="password" name="password">
         </div>
 
         <!-- Remember Me + Forgot Password -->

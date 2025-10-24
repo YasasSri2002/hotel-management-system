@@ -1,13 +1,28 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const loginBtn = document.getElementById("login-button");
+document.addEventListener("DOMContentLoaded", () => {
+  const loginBtn = document.getElementById("login-button");
 
-    if (loginBtn) {
-        loginBtn.addEventListener('click', function() {
-            console.log("Button clicked!");
-        });
+  loginBtn.addEventListener('click', (e) => {
+    e.preventDefault(); //stop form from submitting or reloading
+
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const usernameValue = usernameInput.value.trim();
+    const passwordValue = passwordInput.value.trim();
+
+    // animation
+    loginBtn.style.transition = 'transform 0.1s ease';
+    loginBtn.style.transform = 'translateY(10px) scale(0.8)';
+    setTimeout(() => {
+      loginBtn.style.transform = 'translateY(0) scale(1)';
+    }, 300);
+
+    // validation
+    if (usernameValue === "" && passwordValue === "") {
+      usernameInput.style.border = '1px solid red';
+      passwordInput.style.border = '1px solid red';
     } else {
-        console.error("Login button not found!");
+      usernameInput.style.border = '';
+      passwordInput.style.border = '';
     }
+  });
 });
-
-const loginBtn = document.getElementById("login-button");
