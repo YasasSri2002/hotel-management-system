@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById("login-button");
 
   loginBtn.addEventListener('click', (e) => {
-    e.preventDefault(); //stop form from submitting or reloading
+
 
     const usernameInput = document.getElementById("username");
     const passwordInput = document.getElementById("password");
