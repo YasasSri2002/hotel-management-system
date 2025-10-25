@@ -1,1 +1,1 @@
-ALTER TABLE booking ADD COLUMN specialMsg varchar(255);
+ALTER TABLE booking ADD COLUMN special_msg VARCHAR(255);
