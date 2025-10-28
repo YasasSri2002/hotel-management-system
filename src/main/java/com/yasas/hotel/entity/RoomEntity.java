@@ -36,7 +36,7 @@ public class RoomEntity {
 
     private Double maxGuestSize;
 
-
+//    private String[] amenities;
 
 
 

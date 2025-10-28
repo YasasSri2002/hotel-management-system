@@ -44,6 +44,7 @@ public class RoomServiceImpl implements RoomService {
         roomEntity.setRoomSize(roomModel.getRoomSize());
         roomEntity.setMinGuestSize(roomModel.getMinGuestSize());
         roomEntity.setMaxGuestSize(roomModel.getMaxGuestSize());
+//        roomEntity.setAmenities(roomModel.getAmenities());
 
         return ResponseEntity.ok(
                 mapper.convertValue(
@@ -99,6 +100,7 @@ public class RoomServiceImpl implements RoomService {
         }
 
 
+
         return ResponseEntity.ok(
                 mapper.convertValue(
                 roomRepository.save(roomEntity),RoomModel.class));
@@ -132,6 +134,7 @@ public class RoomServiceImpl implements RoomService {
                 .minGuestSize(roomEntity.getMinGuestSize())
                 .maxGuestSize(roomEntity.getMaxGuestSize())
                 .type(roomEntity.getType())
+//                        .amenities(roomEntity.getAmenities())
                 .build()
         );
 

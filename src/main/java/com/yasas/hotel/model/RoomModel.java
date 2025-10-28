@@ -24,4 +24,6 @@ public class RoomModel {
 
     private Double maxGuestSize;
 
+//    private String[] amenities;
+
 }

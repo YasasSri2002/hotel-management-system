@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -45,7 +46,7 @@ public class BookingServiceImpl implements BookingService {
 
         Iterable<RoomEntity> allRooms = roomRepository.findAllById(book.getRoomId());
 
-        bookingEntity.setRooms((List<RoomEntity>) allRooms);
+      bookingEntity.setRooms((List<RoomEntity>) allRooms);
 
 
         return ResponseEntity.ok(mapper.convertValue(
@@ -119,5 +120,18 @@ public class BookingServiceImpl implements BookingService {
                 bookingEntityToResponseModel(savedBookingEntity);
 
         return ResponseEntity.ok(responseModel);
+    }
+
+    @Override
+    public ResponseEntity<String> checkRoomAvailability(
+            Long roomId, LocalDateTime startDate, LocalDateTime endDate
+    ) {
+        Long notAvailable = bookingRepository.roomNotAvailable(roomId, startDate, endDate);
+        if(notAvailable !=null && notAvailable == 1){
+            return ResponseEntity.badRequest().body("Room is not available");
+        }else{
+            return ResponseEntity.ok("Room is available");
+        }
+
     }
 }

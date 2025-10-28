@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -35,4 +36,9 @@ public class BookingController {
         return bookingService.bookingWithPayment(requestModel);
     }
 
+    @GetMapping("/check-availability")
+    public ResponseEntity<String> checkAvailabilityOfTheRoom(
+            @RequestParam Long roomId,LocalDateTime startDate, LocalDateTime endDate){
+        return bookingService.checkRoomAvailability(roomId,startDate,endDate);
+    }
 }
