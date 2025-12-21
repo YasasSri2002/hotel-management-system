@@ -33,5 +33,10 @@ public class StaffController {
         return staffService.updateMember(email,staffModel);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long>staffCount(){
+        return staffService.staffCount();
+    }
+
 
 }

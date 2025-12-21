@@ -96,4 +96,9 @@ public class StaffServiceImpl implements StaffService {
                         .phoneNo(byEmail.getPhoneNo())
                         .build());
     }
+
+    @Override
+    public ResponseEntity<Long> staffCount() {
+        return ResponseEntity.ok(staffRepository.count());
+    }
 }
