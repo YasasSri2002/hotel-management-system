@@ -140,4 +140,9 @@ public class RoomServiceImpl implements RoomService {
 
     }
 
+    @Override
+    public ResponseEntity<Long> roomCount() {
+        return ResponseEntity.ok(roomRepository.count());
+    }
+
 }

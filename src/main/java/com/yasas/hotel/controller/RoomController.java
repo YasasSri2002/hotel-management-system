@@ -49,6 +49,10 @@ public class RoomController {
     public ResponseEntity<RoomModel> getRoomById(@RequestParam Long roomId){
         return roomService.getRoomById(roomId);
     }
+    @GetMapping("/count")
+    public ResponseEntity<Long>roomCount(){
+        return roomService.roomCount();
+    }
 
 
 }

@@ -21,4 +21,6 @@ public interface RoomService  {
 
     ResponseEntity<RoomModel> getRoomById(Long roomId);
 
+    ResponseEntity<Long> roomCount();
+
 }
