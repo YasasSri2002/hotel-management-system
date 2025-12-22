@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -19,6 +20,17 @@ import java.util.List;
 public class StaffServiceImpl implements StaffService {
 
     private final StaffRepository staffRepository;
+
+    public static StaffResponseModel convertStaffEntityToStaffResponseEntity
+            (StaffEntity staffEntity){
+        return StaffResponseModel.builder()
+                .id(staffEntity.getId())
+                .email(staffEntity.getEmail())
+                .name(staffEntity.getName())
+                .jobRole(staffEntity.getJobRole())
+                .phoneNo(staffEntity.getPhoneNo())
+                .build();
+    }
 
     @Override
     public ResponseEntity<StaffResponseModel> newMember(StaffModel staffModel) {
@@ -34,13 +46,7 @@ public class StaffServiceImpl implements StaffService {
         StaffEntity save = staffRepository.save(staffEntity);
 
         return ResponseEntity.ok(
-                StaffResponseModel.builder()
-                        .id(save.getId())
-                        .email(save.getEmail())
-                        .name(save.getName())
-                        .jobRole(save.getJobRole())
-                        .phoneNo(save.getPhoneNo())
-                        .build()
+                convertStaffEntityToStaffResponseEntity(save)
         );
     }
 
@@ -100,5 +106,13 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public ResponseEntity<Long> staffCount() {
         return ResponseEntity.ok(staffRepository.count());
+    }
+
+    @Override
+    public ResponseEntity<StaffResponseModel> getById(UUID id) {
+        StaffEntity staffEntity = staffRepository.findById(id).orElseThrow(() -> new
+                StaffMemberDoesNotExistException("no member with this id " + id));
+
+        return ResponseEntity.ok(convertStaffEntityToStaffResponseEntity(staffEntity));
     }
 }

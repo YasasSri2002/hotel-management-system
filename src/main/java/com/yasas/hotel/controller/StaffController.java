@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,6 +37,11 @@ public class StaffController {
     @GetMapping("/count")
     public ResponseEntity<Long>staffCount(){
         return staffService.staffCount();
+    }
+
+    @GetMapping("/by-id")
+    public ResponseEntity<StaffResponseModel>getById(UUID id){
+        return staffService.getById(id);
     }
 
 

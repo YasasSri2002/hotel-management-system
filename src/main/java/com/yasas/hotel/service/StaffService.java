@@ -5,6 +5,7 @@ import com.yasas.hotel.model.response.StaffResponseModel;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 
 public interface StaffService {
@@ -16,6 +17,8 @@ public interface StaffService {
     ResponseEntity<StaffResponseModel> updateMember(String email, StaffModel staffModel);
 
     ResponseEntity<Long> staffCount();
+
+    ResponseEntity<StaffResponseModel>getById(UUID id);
 
 
 }
