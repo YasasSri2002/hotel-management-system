@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -114,5 +115,11 @@ public class StaffServiceImpl implements StaffService {
                 StaffMemberDoesNotExistException("no member with this id " + id));
 
         return ResponseEntity.ok(convertStaffEntityToStaffResponseEntity(staffEntity));
+    }
+
+    @Override
+    public ResponseEntity<Map<String, String>> deleteStaffMember(UUID id) {
+        staffRepository.deleteById(id);
+        return ResponseEntity.ok(Map.of("Deletion","sucessfully deleted "+id));
     }
 }
