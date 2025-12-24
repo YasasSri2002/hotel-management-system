@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -44,5 +45,8 @@ public class StaffController {
         return staffService.getById(id);
     }
 
-
+    @DeleteMapping("/by-id")
+    public ResponseEntity<Map<String,String>>deleteMember(@RequestParam UUID id){
+        return staffService.deleteStaffMember(id);
+    }
 }
