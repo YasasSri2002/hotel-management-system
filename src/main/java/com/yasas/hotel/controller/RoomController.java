@@ -54,5 +54,10 @@ public class RoomController {
         return roomService.roomCount();
     }
 
+    @GetMapping("/by-guest-size")
+    public ResponseEntity<List<RoomModel>>getRoomsByGuestSize(@RequestParam Double size){
+        return roomService.getAllRoomsByMaxGuestSize(size);
+    }
+
 
 }

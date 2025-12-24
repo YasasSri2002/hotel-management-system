@@ -23,4 +23,6 @@ public interface RoomService  {
 
     ResponseEntity<Long> roomCount();
 
+    ResponseEntity<List<RoomModel>>getAllRoomsByMaxGuestSize(Double size);
+
 }

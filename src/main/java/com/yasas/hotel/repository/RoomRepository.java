@@ -13,6 +13,8 @@ public interface RoomRepository  extends CrudRepository<RoomEntity, Long> {
 
     Iterable<RoomEntity> findAllByType(String type);
 
+    Iterable<RoomEntity>findAllByMaxGuestSize(Double size);
+
 
 
 }

@@ -21,6 +21,18 @@ public class RoomServiceImpl implements RoomService {
 
     private final ObjectMapper mapper;
 
+    public static RoomModel converRoomEntitytoRoomModel(RoomEntity roomEntity){
+        return RoomModel.builder()
+                .roomId(roomEntity.getRoomId())
+                .roomSize(roomEntity.getRoomSize())
+                .type(roomEntity.getType())
+                .maxGuestSize(roomEntity.getMaxGuestSize())
+                .minGuestSize(roomEntity.getMinGuestSize())
+                .price(roomEntity.getPrice())
+                .description(roomEntity.getDescription())
+                .build();
+    }
+
     @Override
     public ResponseEntity<List<RoomModel>> retrieveAllRoom(){
         Iterable<RoomEntity> rooms = roomRepository.findAll();
@@ -143,6 +155,16 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public ResponseEntity<Long> roomCount() {
         return ResponseEntity.ok(roomRepository.count());
+    }
+
+    @Override
+    public ResponseEntity<List<RoomModel>> getAllRoomsByMaxGuestSize(Double size) {
+        ArrayList<RoomModel> roomModelArrayList = new ArrayList<>();
+        Iterable<RoomEntity> roomEntities = roomRepository.findAllByMaxGuestSize(size);
+        roomEntities.forEach(roomEntity ->
+            roomModelArrayList.add(converRoomEntitytoRoomModel(roomEntity))
+        );
+        return ResponseEntity.ok(roomModelArrayList);
     }
 
 }
